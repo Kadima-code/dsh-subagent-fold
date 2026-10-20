@@ -1,0 +1,26 @@
+{
+  "name": "@dsh-external/dsh-subagent-fold",
+  "version": "0.0.1",
+  "description": "子代理列表折叠：在原生「子代理」下拉里按使用批次分为 历史/今日/上次/本次 四组，本次始终展开，其余可折叠。",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml"
+  ],
+  "license": "BSD-3-Clause",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
+    }
+  }
+}

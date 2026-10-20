@@ -1,0 +1,5 @@
+# dsh-subagent-fold 的 profile patch 层：插一行把本插件挂进组合树；
+# 浏览器半由 dsh.client 声明自动加载。
+- insert:
+    - id: dsh-subagent-fold
+      name: '@dsh-external/dsh-subagent-fold'
