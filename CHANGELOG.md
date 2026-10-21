@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.0.3
+
+- 新增 `tools/install.cjs`：一条命令写入 `dependencies` + `dsh.profile.bundles`，并备份 profile 的 `package.json`；支持 `--dry-run` 预览、`--uninstall` 卸载。
+- 已在临时 profile 实测：安装（依赖/装配登记/junction）与卸载（回滚干净）均通过。
+- 插件功能代码无变化（分组折叠行为同 v0.0.2）。
+
 ## v0.0.2
 
 - **子代理界面折叠统一**：打开子代理会话时，其头部下拉（父会话子代理目录 / lineage）也按 历史 / 今日 / 上次 / 本次 分组折叠，与主会话一致。

@@ -1,6 +1,6 @@
 # @dsh-external/dsh-subagent-fold
 
-[![version](https://img.shields.io/badge/version-0.0.2-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
+[![version](https://img.shields.io/badge/version-0.0.3-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
 
 给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）用的**子代理下拉折叠**：把子代理按「使用批次」收进 **历史 / 今日 / 上次 / 本次** 四组，**本次始终展开**，其余可折叠。
 
