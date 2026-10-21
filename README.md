@@ -35,6 +35,12 @@
    └ 任务 C
 ```
 
+### 截图（前后对比）
+
+| 之前（51 条平铺） | 之后（分组折叠） |
+|---|---|
+| ![之前：子代理下拉是 51 条平铺](docs/before.png) | ![之后：历史 13 / 上次 4 / 本次 4](docs/after.png) |
+
 ## 安装
 
 ### 方式一：标准 bundle（推荐）
@@ -118,6 +124,12 @@ A **subagent-dropdown folding** plugin for [DeepSeek Harness](https://github.com
 | **History** | anything before today | collapsed |
 
 > A "batch" is clustered by creation time; a gap of ≤ **120 s** counts as the same batch.
+
+## Screenshots
+
+| Before (51 flat rows) | After (grouped & folded) |
+|---|---|
+| ![Before: a flat list of 51 subagents](docs/before.png) | ![After: History 13 / Previous 4 / Current 4](docs/after.png) |
 
 ## Install
 
