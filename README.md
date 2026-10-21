@@ -1,109 +1,168 @@
-# dsh-subagent-fold
+# @dsh-external/dsh-subagent-fold
 
-DSH（DeepSeek Harness）客户端插件：**按“使用批次”折叠子代理列表**。
-A DSH (DeepSeek Harness) client plugin that **folds the subagent list by usage batch**.
+[![version](https://img.shields.io/badge/version-0.0.2-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
 
----
+给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）用的**子代理下拉折叠**：把子代理按「使用批次」收进 **历史 / 今日 / 上次 / 本次** 四组，**本次始终展开**，其余可折叠。
 
-## 中文
+**不改原版头部、不新增入口**——只在官方「子代理」下拉里加分组，按钮和布局一个都没动。
 
-不修改原版头部，只在官方「子代理」下拉菜单里分组：把不同时间批次产生的子代理分别收进 **历史 / 今日 / 上次 / 本次** 四组。**本次始终展开**，其余可折叠，展开后条目不会与「本次」混在一起。
+## 怎么用
 
-### 特性
-- **四段分组（上 → 下）**：历史 / 今日 / 上次 / 本次
-  - **本次**：最近一次使用子代理的那一批（并行发起算同一批），始终展开
-  - **上次**：上一批使用子代理产生的（折叠）
-  - **今日**：今天其余批次的（折叠）
-  - **历史**：今天之前的（折叠）
-- **批次判定**：按子代理创建时间聚合，间隔 ≤120 秒视为同一批。
-- **不动原版 UI**：只增强官方下拉，不替换按钮、不改头部布局。
-- **fail-open**：数据未就绪或行序对不上时**一律不折叠**，绝不误藏正在运行的子代理。
-- **低开销**：仅监听菜单浮层；菜单关闭即停止；折叠显隐用 CSS 属性选择器（O(1)）。
-- **零外部依赖**：`lib/client.js` 为手写产物，无构建步骤、无网络、无落盘。
-- **子代理会话内也生效**：打开某个子代理会话时，它头部的上级/目录下拉同样按批次分组折叠。
+1. **打开**：点官方「子代理」按钮（原版也支持悬停展开，插件不干预）。
+2. **看分组**：最下面是「本次 N」标签 + 本次批次（始终展开）；上面依次是「上次 N / 今日 N / 历史 N」。
+3. **折叠**：点任一分组头即展开/收起，标题只显示「名称 + 条数」。
+4. **子代理会话内同样生效**：打开某个子代理会话时，它头部的上级/目录下拉也按同一规则分组。
 
-### 兼容性
-- DSH 桌面版（Electron）0.2.x（实测 0.2.1-rc.2）。
-- 纯客户端插件，不依赖 super-injector 等热加载工具；按标准 bundle 安装即可使用全部功能。
+| 分组 | 含义 | 默认 |
+|---|---|---|
+| **本次** | 最近一次使用子代理产生的那一批（并行发起算同一批） | 始终展开 |
+| **上次** | 上一次使用子代理产生的那一批 | 折叠 |
+| **今日** | 今天其余批次 | 折叠 |
+| **历史** | 今天之前 | 折叠 |
 
-### 安装（标准 DSH 插件安装）
-1. 把本包放进目标 profile 的 `node_modules`（`pnpm add` / 解压到 `node_modules/@dsh-external/dsh-subagent-fold`）。
-2. 在该 profile 的 `package.json` 里登记依赖与 bundle：
-   ```json
-   {
-     "dependencies": { "@dsh-external/dsh-subagent-fold": "link:<本地路径>" },
-     "dsh": { "profile": { "bundles": ["@dsh-external/dsh-subagent-fold"] } }
-   }
-   ```
-3. 重启 DSH。
+> 「批次」按子代理创建时间聚合，间隔 ≤ **120 秒**视为同一批。
 
-> 说明：DSH 的插件是**按 `dsh.profile.bundles` 显式装配**的，仅放进 `node_modules` 不会自动加载，所以需要登记这两处。通过官方插件市场/`plugin_manager install_bundle` 安装时，它会自动写入这些配置。
+## 效果示意
+
+```
+子代理下拉
+├ 历史 12        ← 折叠（点开）
+├ 今日 5         ← 折叠
+├ 上次 2         ← 折叠
+└ 本次 3         ← 标签 + 始终展开
+   ├ 任务 A      运行中
+   ├ 任务 B
+   └ 任务 C
+```
+
+## 安装
+
+### 方式一：标准 bundle（推荐）
+
+把本包放进目标 profile 并登记，然后**完全退出并重开** DSH：
+
+```powershell
+cd "$env:USERPROFILE\.dsh\profiles\<profile>"
+pnpm add "<本仓库路径或解压目录>"
+```
+
+在该 profile 的 `package.json` 登记：
+
+```json
+{
+  "dependencies": { "@dsh-external/dsh-subagent-fold": "link:<本仓库路径>" },
+  "dsh": { "profile": { "bundles": ["@dsh-external/dsh-subagent-fold"] } }
+}
+```
+
+### 方式二：手动解压
+
+把 `package.json`、`cordis.patch.yml`、`lib/` 放到
+`<profile>/node_modules/@dsh-external/dsh-subagent-fold/`，再按上面登记 `dependencies` 与 `dsh.profile.bundles`，重启。
 
 ### 卸载
-从 profile `package.json` 的 `dependencies` 与 `dsh.profile.bundles` 移除本包，删除 `node_modules/@dsh-external/dsh-subagent-fold`，重启。
 
-### 文件结构
+从 `dependencies` 与 `dsh.profile.bundles` 移除本包，删除 `node_modules/@dsh-external/dsh-subagent-fold`，重启。
+
+## 兼容性
+
+- DSH 桌面版（Electron）0.2.x，实测 0.2.1-rc.2。
+- 纯客户端插件，**不依赖 super-injector 等热加载工具**；标准 bundle 安装即可用全部功能。
+- 不采集数据、不发起网络请求。
+
+## 文件结构
+
 ```
 package.json        # 插件声明（bundle patch + client）
 cordis.patch.yml    # 装配补丁：向组合树插入一条插件条目
 lib/index.js        # 宿主半（空实现）
-lib/client.js       # 客户端半：菜单分组与折叠
+lib/client.js       # 客户端半：菜单分组与折叠（手写，零构建）
 ```
 
-### 说明
-- 本仓库为发布版：仅包含运行所需的功能代码（无测试、无构建脚本、无注释）。
-- 不采集任何数据，不发起网络请求。
+## 开发
+
+`lib/client.js` 为手写 CJS bundle（`window.__ModuleLoader__.load`），无构建步骤。改完保存后 **Ctrl+R** 刷新页面即可加载。
+
+## 已知限制
+
+- 依赖官方下拉的 `role="tree" / role="treeitem"` 语义锚点；官方若改结构需适配。
+- 折叠条插在原生菜单内，极端重渲染/虚拟化可能短暂移除，插件有 1s 兜底重挂。
+- 悬停展开是官方行为，插件不拦截；点击开/关由插件处理。
+
+## 许可
+
+BSD-3-Clause
 
 ---
 
-## English
+# @dsh-external/dsh-subagent-fold (English)
 
-Does not touch the original header. It only enhances the built-in **Subagent** dropdown: subagents are grouped by **usage batch** into **History / Today / Previous / Current**. **Current is always expanded**; the others are collapsible, so an expanded group never gets mixed up with "Current".
+[![version](https://img.shields.io/badge/version-0.0.2-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE)
 
-### Features
-- **Four sections (top → bottom)**: History / Today / Previous / Current
-  - **Current**: the most recent batch of subagents (parallel spawns count as one batch); always expanded
-  - **Previous**: the batch before that (collapsed)
-  - **Today**: other batches from today (collapsed)
-  - **History**: anything before today (collapsed)
-- **Batch detection**: grouped by subagent creation time; a gap of ≤120 s is treated as the same batch.
-- **No UI replacement**: enhances the built-in dropdown only; no button swap, no header layout change.
-- **Fail-open**: if data is not ready or row order does not match, **nothing is folded** — a running subagent is never hidden.
-- **Low overhead**: observes the menu only; stops when the menu closes; visibility via CSS attribute selectors (O(1)).
-- **No external deps**: `lib/client.js` is hand-written; no build step, no network, no disk I/O.
-- **Works inside subagent sessions too**: when you open a subagent session, its header (parent/directory dropdown) is grouped and folded the same way.
+A **subagent-dropdown folding** plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH). Subagents are grouped by **usage batch** into **History / Today / Previous / Current**; **Current is always expanded**, the rest are collapsible.
 
-### Compatibility
-- DSH desktop (Electron) 0.2.x (tested on 0.2.1-rc.2).
-- Pure client plugin; does **not** require hot-reload tools such as super-injector. A standard bundle install provides all features.
+**No header replacement, no new entry point** — it only adds grouping inside the built-in **Subagent** dropdown.
 
-### Install (standard DSH plugin install)
-1. Put this package into the target profile's `node_modules` (`pnpm add` or extract to `node_modules/@dsh-external/dsh-subagent-fold`).
-2. Register it in that profile's `package.json`:
-   ```json
-   {
-     "dependencies": { "@dsh-external/dsh-subagent-fold": "link:<local-path>" },
-     "dsh": { "profile": { "bundles": ["@dsh-external/dsh-subagent-fold"] } }
-   }
-   ```
-3. Restart DSH.
+## Usage
 
-> Note: DSH assembles plugins **explicitly from `dsh.profile.bundles`**. Dropping a package into `node_modules` alone is not enough, hence the two entries above. Installing via the official plugin market / `plugin_manager install_bundle` writes these entries for you.
+1. Open the built-in **Subagent** button (native hover-open is untouched).
+2. The bottom shows a **"Current N"** label plus the current batch (always expanded); above it are **Previous N / Today N / History N**.
+3. Click any group header to expand/collapse; headers show only "name + count".
+4. **Also works inside a subagent session**: its header (parent/directory dropdown) is grouped the same way.
+
+| Group | Meaning | Default |
+|---|---|---|
+| **Current** | the most recent batch of subagents (parallel spawns = one batch) | always expanded |
+| **Previous** | the batch before that | collapsed |
+| **Today** | other batches from today | collapsed |
+| **History** | anything before today | collapsed |
+
+> A "batch" is clustered by creation time; a gap of ≤ **120 s** counts as the same batch.
+
+## Install
+
+### Standard bundle (recommended)
+
+```bash
+cd "$DSH_HOME/profiles/<profile>"
+pnpm add "<path-or-extracted-dir>"
+```
+
+Then register in that profile's `package.json`:
+
+```json
+{
+  "dependencies": { "@dsh-external/dsh-subagent-fold": "link:<path>" },
+  "dsh": { "profile": { "bundles": ["@dsh-external/dsh-subagent-fold"] } }
+}
+```
+
+Fully quit and reopen DSH.
 
 ### Uninstall
-Remove the package from `dependencies` and `dsh.profile.bundles`, delete `node_modules/@dsh-external/dsh-subagent-fold`, then restart.
 
-### Layout
-```
-package.json        # plugin manifest (bundle patch + client)
-cordis.patch.yml    # assembly patch: inserts one plugin entry into the composition tree
-lib/index.js        # host half (no-op)
-lib/client.js       # client half: menu grouping & folding
-```
+Remove the package from `dependencies` and `dsh.profile.bundles`, delete `node_modules/@dsh-external/dsh-subagent-fold`, restart.
 
-### Notes
-- This repository is the release build: runtime functional code only (no tests, no build scripts, no comments).
+## Compatibility
+
+- DSH desktop (Electron) 0.2.x (tested on 0.2.1-rc.2).
+- Pure client plugin; **no hot-reload tool (super-injector) required**.
 - No telemetry, no network requests.
+
+## Layout
+
+```
+package.json        # manifest (bundle patch + client)
+cordis.patch.yml    # assembly patch (inserts one entry)
+lib/index.js        # host half (no-op)
+lib/client.js       # client half: grouping & folding (hand-written, no build)
+```
+
+## Known limitations
+
+- Relies on the built-in dropdown's `role="tree" / "treeitem"` semantics.
+- The fold header is injected into the native menu; extreme re-renders may briefly remove it (1s re-assert fallback).
+- Native hover-open is left as-is; click open/close is handled by the plugin.
 
 ## License
 
