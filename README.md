@@ -43,6 +43,18 @@
 
 ## 安装
 
+### 最快：跑安装脚本
+
+解压后运行（自动写 `dependencies` + `dsh.profile.bundles`，并备份 profile 的 `package.json`）：
+
+```bash
+node tools/install.cjs --profile desktop          # 安装
+node tools/install.cjs --dry-run                  # 只预览
+node tools/install.cjs --uninstall --profile desktop  # 卸载
+```
+
+然后**完全退出并重开** DSH。
+
 ### 方式一：标准 bundle（推荐）
 
 把本包放进目标 profile 并登记，然后**完全退出并重开** DSH：
@@ -132,6 +144,18 @@ A **subagent-dropdown folding** plugin for [DeepSeek Harness](https://github.com
 | ![Before: a flat list of 51 subagents](docs/before.png) | ![After: History 13 / Previous 4 / Current 4](docs/after.png) |
 
 ## Install
+
+### Fastest: run the installer
+
+After extracting, run (it writes `dependencies` + `dsh.profile.bundles` and backs up the profile `package.json`):
+
+```bash
+node tools/install.cjs --profile desktop          # install
+node tools/install.cjs --dry-run                  # preview only
+node tools/install.cjs --uninstall --profile desktop  # uninstall
+```
+
+Then **fully quit and reopen** DSH.
 
 ### Standard bundle (recommended)
 
