@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.0.4
+
+- **子代理可删除**：子代理行尾部新增「⋯」菜单 →「删除子智能体」，二次确认（运行中会先停止）。host 半自带兜底实现（仅允许删除 `origin=subagent` 的会话，校验目录防穿越；官方无删除 API，装了 dsh-session-manager 时优先复用）。
+- **计数同步**：删除后该行隐藏，「N 个子智能体」显示数按已删 id 递减并持久化（localStorage），刷新后仍准确。
+- 离线测试：非法 id→400、主会话→403、子代理→200 且目录真删。
+
 ## v0.0.3
 
 - 新增 `tools/install.cjs`：一条命令写入 `dependencies` + `dsh.profile.bundles`，并备份 profile 的 `package.json`；支持 `--dry-run` 预览、`--uninstall` 卸载。
