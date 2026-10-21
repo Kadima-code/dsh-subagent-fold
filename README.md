@@ -115,7 +115,7 @@ BSD-3-Clause
 
 # @dsh-external/dsh-subagent-fold (English)
 
-[![version](https://img.shields.io/badge/version-0.0.2-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![downloads](https://img.shields.io/github/downloads/Kadima-code/dsh-subagent-fold/total?color=2f6feb)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE)
+[![version](https://img.shields.io/badge/version-0.0.3-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![downloads](https://img.shields.io/github/downloads/Kadima-code/dsh-subagent-fold/total?color=2f6feb&label=downloads)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
 
 A **subagent-dropdown folding** plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH). Subagents are grouped by **usage batch** into **History / Today / Previous / Current**; **Current is always expanded**, the rest are collapsible.
 
