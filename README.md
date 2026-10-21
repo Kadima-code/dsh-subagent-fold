@@ -20,6 +20,7 @@ A DSH (DeepSeek Harness) client plugin that **folds the subagent list by usage b
 - **fail-open**：数据未就绪或行序对不上时**一律不折叠**，绝不误藏正在运行的子代理。
 - **低开销**：仅监听菜单浮层；菜单关闭即停止；折叠显隐用 CSS 属性选择器（O(1)）。
 - **零外部依赖**：`lib/client.js` 为手写产物，无构建步骤、无网络、无落盘。
+- **子代理会话内也生效**：打开某个子代理会话时，它头部的上级/目录下拉同样按批次分组折叠。
 
 ### 兼容性
 - DSH 桌面版（Electron）0.2.x（实测 0.2.1-rc.2）。
@@ -70,6 +71,7 @@ Does not touch the original header. It only enhances the built-in **Subagent** d
 - **Fail-open**: if data is not ready or row order does not match, **nothing is folded** — a running subagent is never hidden.
 - **Low overhead**: observes the menu only; stops when the menu closes; visibility via CSS attribute selectors (O(1)).
 - **No external deps**: `lib/client.js` is hand-written; no build step, no network, no disk I/O.
+- **Works inside subagent sessions too**: when you open a subagent session, its header (parent/directory dropdown) is grouped and folded the same way.
 
 ### Compatibility
 - DSH desktop (Electron) 0.2.x (tested on 0.2.1-rc.2).
