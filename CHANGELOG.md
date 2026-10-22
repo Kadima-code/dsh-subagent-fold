@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.0.6
+
+- **子代理模型同步（新）**：新增 host 模块 `lib/model-sync.js`——`list_subagent_models` 改为返回**当前模型目录**（llm 实时查询，无缓存）；`subagent` 的显式 `provider/model` 先从参数剥离、按实时目录校验，再经 `AsyncLocalStorage` 合并进 `startActivation/startContinuable` 的 `agentOptions`。不改工具 schema，无显式选择时原样透传，原生守卫/日志/生命周期不变。
+- 效果：旧会话不再受创建时 allowedModels 快照限制，主对话可逐任务选不同模型（实测旧会话 3 个模型均成功建子会话，路由已核对）。
+- 风险：属于对内核工具执行体的适配，DSH 升级后需回归；卸载插件即恢复原生行为。
+
 ## v0.0.5
 
 - **整组删除**：各分组标题（历史/今日/上次/本次）右侧新增「⋯」→「删除本组（N 个）」，一次删掉整组；交互与行内单个删除完全一致（先弹菜单、再确认）。

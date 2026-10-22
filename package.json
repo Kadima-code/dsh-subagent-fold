@@ -1,6 +1,6 @@
 {
   "name": "@dsh-external/dsh-subagent-fold",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "子代理列表折叠：在原生「子代理」下拉里按使用批次分为 历史/今日/上次/本次 四组，本次始终展开，其余可折叠。",
   "type": "module",
   "main": "./lib/index.js",

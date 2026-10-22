@@ -1,6 +1,6 @@
 # @dsh-external/dsh-subagent-fold
 
-[![version](https://img.shields.io/badge/version-0.0.5-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![npm](https://img.shields.io/npm/v/dsh-subagent-fold?color=cb3837&label=npm)](https://www.npmjs.com/package/dsh-subagent-fold) [![npm downloads](https://img.shields.io/npm/dm/dsh-subagent-fold?color=cb3837&label=npm%20downloads)](https://www.npmjs.com/package/dsh-subagent-fold) [![downloads](https://img.shields.io/github/downloads/Kadima-code/dsh-subagent-fold/total?color=2f6feb&label=release%20downloads)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
+[![version](https://img.shields.io/badge/version-0.0.6-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![npm](https://img.shields.io/npm/v/dsh-subagent-fold?color=cb3837&label=npm)](https://www.npmjs.com/package/dsh-subagent-fold) [![npm downloads](https://img.shields.io/npm/dm/dsh-subagent-fold?color=cb3837&label=npm%20downloads)](https://www.npmjs.com/package/dsh-subagent-fold) [![downloads](https://img.shields.io/github/downloads/Kadima-code/dsh-subagent-fold/total?color=2f6feb&label=release%20downloads)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
 
 给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）用的**子代理下拉折叠**：把子代理按「使用批次」收进 **历史 / 今日 / 上次 / 本次** 四组，**本次始终展开**，其余可折叠。
 
@@ -14,6 +14,7 @@
 4. **子代理会话内同样生效**：打开某个子代理会话时，它头部的上级/目录下拉也按同一规则分组。
 5. **删除子代理**：每行尾部有「⋯」→「删除子智能体」，二次确认后删除（运行中会先停止）。删除后该行隐藏，「N 个子智能体」计数同步减。
 6. **整组删除**：各组标题（历史/今日/上次/本次）右侧的「⋯」→「删除本组（N 个）」，一次删掉整组；交互与行内删除一致。
+7. **子代理模型同步**：`list_subagent_models` 返回**当前**模型目录（不受会话创建时的旧快照限制）；`subagent` 的显式 `provider/model` 按实时目录校验后生效——主对话可以每次任务换不同模型。
 
 | 分组 | 含义 | 默认 |
 |---|---|---|
@@ -143,7 +144,7 @@ BSD-3-Clause
 
 # @dsh-external/dsh-subagent-fold (English)
 
-[![version](https://img.shields.io/badge/version-0.0.5-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![npm](https://img.shields.io/npm/v/dsh-subagent-fold?color=cb3837&label=npm)](https://www.npmjs.com/package/dsh-subagent-fold) [![npm downloads](https://img.shields.io/npm/dm/dsh-subagent-fold?color=cb3837&label=npm%20downloads)](https://www.npmjs.com/package/dsh-subagent-fold) [![downloads](https://img.shields.io/github/downloads/Kadima-code/dsh-subagent-fold/total?color=2f6feb&label=release%20downloads)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
+[![version](https://img.shields.io/badge/version-0.0.6-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![npm](https://img.shields.io/npm/v/dsh-subagent-fold?color=cb3837&label=npm)](https://www.npmjs.com/package/dsh-subagent-fold) [![npm downloads](https://img.shields.io/npm/dm/dsh-subagent-fold?color=cb3837&label=npm%20downloads)](https://www.npmjs.com/package/dsh-subagent-fold) [![downloads](https://img.shields.io/github/downloads/Kadima-code/dsh-subagent-fold/total?color=2f6feb&label=release%20downloads)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
 
 A **subagent-dropdown folding** plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH). Subagents are grouped by **usage batch** into **History / Today / Previous / Current**; **Current is always expanded**, the rest are collapsible.
 
@@ -157,6 +158,7 @@ A **subagent-dropdown folding** plugin for [DeepSeek Harness](https://github.com
 4. **Also works inside a subagent session**: its header (parent/directory dropdown) is grouped the same way.
 5. **Delete a subagent**: the trailing **⋯** on each row opens "Delete subagent" (confirmed twice; a running one is stopped first). The row disappears and the "N subagents" count decreases accordingly.
 6. **Delete a whole group**: the **⋯** on each group header (History/Today/Previous/This batch) opens "Delete group (N)" to remove the entire group at once — same interaction as the row menu.
+7. **Live subagent models**: `list_subagent_models` reports the **current** catalog (not the stale per-session snapshot), and an explicit `provider/model` on `subagent` is validated against it — so the main agent can pick a different model for every task.
 
 | Group | Meaning | Default |
 |---|---|---|
