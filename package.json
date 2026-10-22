@@ -1,7 +1,7 @@
 {
-  "name": "@dsh-external/dsh-subagent-fold",
-  "version": "0.0.6",
-  "description": "子代理列表折叠：在原生「子代理」下拉里按使用批次分为 历史/今日/上次/本次 四组，本次始终展开，其余可折叠。",
+  "name": "@dsh-external/dsh-subagent-toolkit",
+  "version": "1.0.0",
+  "description": "子代理工具箱：在原生「子代理」下拉按使用批次分组（历史/今日/上次/本次）、行内/整组删除子代理会话、并让子代理模型名单实时生效（逐任务选模型）。",
   "type": "module",
   "main": "./lib/index.js",
   "exports": {
@@ -23,5 +23,17 @@
       "platform": "web",
       "immediately": true
     }
-  }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "plugin",
+    "subagent",
+    "fold",
+    "delete",
+    "model-sync",
+    "toolkit"
+  ]
 }

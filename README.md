@@ -1,6 +1,6 @@
-# @dsh-external/dsh-subagent-fold
+# @dsh-external/dsh-subagent-toolkit
 
-[![version](https://img.shields.io/badge/version-0.0.6-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![npm](https://img.shields.io/npm/v/dsh-subagent-fold?color=cb3837&label=npm)](https://www.npmjs.com/package/dsh-subagent-fold) [![npm downloads](https://img.shields.io/npm/dm/dsh-subagent-fold?color=cb3837&label=npm%20downloads)](https://www.npmjs.com/package/dsh-subagent-fold) [![downloads](https://img.shields.io/github/downloads/Kadima-code/dsh-subagent-fold/total?color=2f6feb&label=release%20downloads)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
+[![version](https://img.shields.io/badge/version-1.0.0-4d93f8)](https://github.com/Kadima-code/dsh-subagent-toolkit/releases) [![npm](https://img.shields.io/npm/v/dsh-subagent-toolkit?color=cb3837&label=npm)](https://www.npmjs.com/package/dsh-subagent-toolkit) [![npm downloads](https://img.shields.io/npm/dm/dsh-subagent-toolkit?color=cb3837&label=npm%20downloads)](https://www.npmjs.com/package/dsh-subagent-toolkit) [![downloads](https://img.shields.io/github/downloads/Kadima-code/dsh-subagent-toolkit/total?color=2f6feb&label=release%20downloads)](https://github.com/Kadima-code/dsh-subagent-toolkit/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-toolkit/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
 
 给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）用的**子代理下拉折叠**：把子代理按「使用批次」收进 **历史 / 今日 / 上次 / 本次** 四组，**本次始终展开**，其余可折叠。
 
@@ -51,22 +51,22 @@
 已发布到 npm，一条命令装进 profile（会写依赖与 bundles）：
 
 ```bash
-dsh plugin --profile desktop add dsh-subagent-fold
+dsh plugin --profile desktop add dsh-subagent-toolkit
 ```
 
 或手动：
 
 ```bash
 cd "$env:USERPROFILE\.dsh\profiles\desktop"
-pnpm add dsh-subagent-fold
+pnpm add dsh-subagent-toolkit
 ```
 
 然后在 profile 的 `package.json` 登记：
 
 ```json
 {
-  "dependencies": { "dsh-subagent-fold": "^0.0.3" },
-  "dsh": { "profile": { "bundles": ["dsh-subagent-fold"] } }
+  "dependencies": { "dsh-subagent-toolkit": "^0.0.3" },
+  "dsh": { "profile": { "bundles": ["dsh-subagent-toolkit"] } }
 }
 ```
 
@@ -97,19 +97,19 @@ pnpm add "<本仓库路径或解压目录>"
 
 ```json
 {
-  "dependencies": { "@dsh-external/dsh-subagent-fold": "link:<本仓库路径>" },
-  "dsh": { "profile": { "bundles": ["@dsh-external/dsh-subagent-fold"] } }
+  "dependencies": { "@dsh-external/dsh-subagent-toolkit": "link:<本仓库路径>" },
+  "dsh": { "profile": { "bundles": ["@dsh-external/dsh-subagent-toolkit"] } }
 }
 ```
 
 ### 方式二：手动解压
 
 把 `package.json`、`cordis.patch.yml`、`lib/` 放到
-`<profile>/node_modules/@dsh-external/dsh-subagent-fold/`，再按上面登记 `dependencies` 与 `dsh.profile.bundles`，重启。
+`<profile>/node_modules/@dsh-external/dsh-subagent-toolkit/`，再按上面登记 `dependencies` 与 `dsh.profile.bundles`，重启。
 
 ### 卸载
 
-从 `dependencies` 与 `dsh.profile.bundles` 移除本包，删除 `node_modules/@dsh-external/dsh-subagent-fold`，重启。
+从 `dependencies` 与 `dsh.profile.bundles` 移除本包，删除 `node_modules/@dsh-external/dsh-subagent-toolkit`，重启。
 
 ## 兼容性
 
@@ -142,9 +142,9 @@ BSD-3-Clause
 
 ---
 
-# @dsh-external/dsh-subagent-fold (English)
+# @dsh-external/dsh-subagent-toolkit (English)
 
-[![version](https://img.shields.io/badge/version-0.0.6-4d93f8)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![npm](https://img.shields.io/npm/v/dsh-subagent-fold?color=cb3837&label=npm)](https://www.npmjs.com/package/dsh-subagent-fold) [![npm downloads](https://img.shields.io/npm/dm/dsh-subagent-fold?color=cb3837&label=npm%20downloads)](https://www.npmjs.com/package/dsh-subagent-fold) [![downloads](https://img.shields.io/github/downloads/Kadima-code/dsh-subagent-fold/total?color=2f6feb&label=release%20downloads)](https://github.com/Kadima-code/dsh-subagent-fold/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-fold/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
+[![version](https://img.shields.io/badge/version-1.0.0-4d93f8)](https://github.com/Kadima-code/dsh-subagent-toolkit/releases) [![npm](https://img.shields.io/npm/v/dsh-subagent-toolkit?color=cb3837&label=npm)](https://www.npmjs.com/package/dsh-subagent-toolkit) [![npm downloads](https://img.shields.io/npm/dm/dsh-subagent-toolkit?color=cb3837&label=npm%20downloads)](https://www.npmjs.com/package/dsh-subagent-toolkit) [![downloads](https://img.shields.io/github/downloads/Kadima-code/dsh-subagent-toolkit/total?color=2f6feb&label=release%20downloads)](https://github.com/Kadima-code/dsh-subagent-toolkit/releases) [![license](https://img.shields.io/badge/license-BSD--3--Clause-8b5cf6)](https://github.com/Kadima-code/dsh-subagent-toolkit/blob/master/LICENSE) [![dsh](https://img.shields.io/badge/DSH-0.2.x-2f6feb)](https://github.com/deepseek-ai/deepseek-harness)
 
 A **subagent-dropdown folding** plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) (DSH). Subagents are grouped by **usage batch** into **History / Today / Previous / Current**; **Current is always expanded**, the rest are collapsible.
 
@@ -182,22 +182,22 @@ A **subagent-dropdown folding** plugin for [DeepSeek Harness](https://github.com
 Published to npm — one command installs it into the profile (writes dependency + bundles):
 
 ```bash
-dsh plugin --profile desktop add dsh-subagent-fold
+dsh plugin --profile desktop add dsh-subagent-toolkit
 ```
 
 Or manually:
 
 ```bash
 cd "$DSH_HOME/profiles/desktop"
-pnpm add dsh-subagent-fold
+pnpm add dsh-subagent-toolkit
 ```
 
 Then register in the profile's `package.json`:
 
 ```json
 {
-  "dependencies": { "dsh-subagent-fold": "^0.0.3" },
-  "dsh": { "profile": { "bundles": ["dsh-subagent-fold"] } }
+  "dependencies": { "dsh-subagent-toolkit": "^0.0.3" },
+  "dsh": { "profile": { "bundles": ["dsh-subagent-toolkit"] } }
 }
 ```
 
@@ -226,8 +226,8 @@ Then register in that profile's `package.json`:
 
 ```json
 {
-  "dependencies": { "@dsh-external/dsh-subagent-fold": "link:<path>" },
-  "dsh": { "profile": { "bundles": ["@dsh-external/dsh-subagent-fold"] } }
+  "dependencies": { "@dsh-external/dsh-subagent-toolkit": "link:<path>" },
+  "dsh": { "profile": { "bundles": ["@dsh-external/dsh-subagent-toolkit"] } }
 }
 ```
 
@@ -235,7 +235,7 @@ Fully quit and reopen DSH.
 
 ### Uninstall
 
-Remove the package from `dependencies` and `dsh.profile.bundles`, delete `node_modules/@dsh-external/dsh-subagent-fold`, restart.
+Remove the package from `dependencies` and `dsh.profile.bundles`, delete `node_modules/@dsh-external/dsh-subagent-toolkit`, restart.
 
 ## Compatibility
 

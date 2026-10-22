@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-// Install / uninstall: @dsh-external/dsh-subagent-fold (standard DSH bundle).
+// Install / uninstall: @dsh-external/dsh-subagent-toolkit (standard DSH bundle).
 // Usage:
 //   node tools/install.cjs [--profile <profileDirOrName>] [--dry-run]
 //   node tools/install.cjs --uninstall [--profile ...] [--dry-run]
 const fs = require("fs");
 const path = require("path");
 
-const NAME = "@dsh-external/dsh-subagent-fold";
+const NAME = "@dsh-external/dsh-subagent-toolkit";
 const REPO = path.resolve(__dirname, "..");
 const DRY = process.argv.includes("--dry-run");
 const UNINSTALL = process.argv.includes("--uninstall");
@@ -20,8 +20,8 @@ const dshHome = process.env.DSH_HOME || path.join(home, ".dsh");
 let prof = arg("profile", "desktop");
 let profileDir = path.isAbsolute(prof) ? prof : path.join(dshHome, "profiles", prof);
 const pjPath = path.join(profileDir, "package.json");
-const EXT = path.join(dshHome, "_plugins", "dsh-subagent-fold");
-const linkPath = path.join(profileDir, "node_modules", "@dsh-external", "dsh-subagent-fold");
+const EXT = path.join(dshHome, "_plugins", "dsh-subagent-toolkit");
+const linkPath = path.join(profileDir, "node_modules", "@dsh-external", "dsh-subagent-toolkit");
 
 function log(...a) { console.log(DRY ? "[dry-run]" : "", ...a); }
 function fail(msg) { console.error("ERROR:", msg); process.exit(1); }
@@ -52,7 +52,7 @@ if (UNINSTALL) {
 }
 
 // ---- install ----
-// 1) stage package into ~/.dsh/_plugins/dsh-subagent-fold
+// 1) stage package into ~/.dsh/_plugins/dsh-subagent-toolkit
 const FILES = ["package.json", "cordis.patch.yml", "lib", "tools", "LICENSE", "README.md"];
 if (!DRY) {
   fs.rmSync(EXT, { recursive: true, force: true });

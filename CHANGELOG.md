@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.0（全量改名）
+
+- **改名**：`dsh-subagent-fold` → **`dsh-subagent-toolkit`**（子代理工具箱）。因为功能已不止折叠：分组折叠 + 子代理删除（单个/整组）+ 子代理模型实时同步。
+- 插件 id / cordis patch id / npm 包名 / GitHub 仓库 全部随之改名；旧 npm 包 `dsh-subagent-fold` 标记 deprecated 并指向新包。
+- 功能与本仓库 v0.0.6 一致：按使用批次分组、行内 ⋯ 删除、组标题 ⋯ 整组删除、计数事件驱动、子代理模型同步（显式逐任务选模型 + 白名单实时校验）。
+- 会审修复一并包含：删除路由同源校验、rm 前 lstat/删后 stat 确认、索引不可用与找不到会话区分、批量并发删除、异常降级与 kill switch（`.model-sync-off`）。
+
 ## v0.0.6
 
 - **子代理模型同步（新）**：新增 host 模块 `lib/model-sync.js`——`list_subagent_models` 改为返回**当前模型目录**（llm 实时查询，无缓存）；`subagent` 的显式 `provider/model` 先从参数剥离、按实时目录校验，再经 `AsyncLocalStorage` 合并进 `startActivation/startContinuable` 的 `agentOptions`。不改工具 schema，无显式选择时原样透传，原生守卫/日志/生命周期不变。
