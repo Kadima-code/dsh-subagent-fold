@@ -1,8 +1,8 @@
 # Changelog
 
-## v1.0.1
+## v1.0.0
 
-- **修复改名遗漏（1.0.0 不可用）**：模块导出 name / client 注册 id / 日志路径仍指向旧名，导致 web-boot「entry 未激活」与「duplicate factory registration」。三处身份标识已改为 dsh-subagent-toolkit；内部键（NS / localStorage DEL_KEY / effect 标签）故意保留。
+- **修复改名遗漏（首版 1.0.0 包不可用，此为修复后重打）**：模块导出 name / client 注册 id / 日志路径仍指向旧名，导致 web-boot「entry 未激活」与「duplicate factory registration」。三处身份标识已改为 dsh-subagent-toolkit；内部键（NS / localStorage DEL_KEY / effect 标签）故意保留。
 - 新增 test/identity.cjs：自检 package.name / index export name / client id / patch name 四者一致，防再次漏改。
 
 ## v1.0.0（全量改名）
