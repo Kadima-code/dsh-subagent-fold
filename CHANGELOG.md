@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.1
+
+- **修复改名遗漏（1.0.0 不可用）**：模块导出 name / client 注册 id / 日志路径仍指向旧名，导致 web-boot「entry 未激活」与「duplicate factory registration」。三处身份标识已改为 dsh-subagent-toolkit；内部键（NS / localStorage DEL_KEY / effect 标签）故意保留。
+- 新增 test/identity.cjs：自检 package.name / index export name / client id / patch name 四者一致，防再次漏改。
+
 ## v1.0.0（全量改名）
 
 - **改名**：`dsh-subagent-fold` → **`dsh-subagent-toolkit`**（子代理工具箱）。因为功能已不止折叠：分组折叠 + 子代理删除（单个/整组）+ 子代理模型实时同步。

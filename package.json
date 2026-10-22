@@ -1,6 +1,6 @@
 {
   "name": "@dsh-external/dsh-subagent-toolkit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "子代理工具箱：在原生「子代理」下拉按使用批次分组（历史/今日/上次/本次）、行内/整组删除子代理会话、并让子代理模型名单实时生效（逐任务选模型）。",
   "type": "module",
   "main": "./lib/index.js",
